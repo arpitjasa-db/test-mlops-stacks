@@ -9,15 +9,14 @@ defaults:
   run:
     working-directory: template/{{.input_root_dir}}
 
-
 jobs:
-  run-tests:
+  generate-zip:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Checkout PR
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           gh pr checkout ${{ github.event.pull_request.number }}
       - name: Generate CICD Zip
@@ -27,7 +26,7 @@ jobs:
           tar -czvf cicd.tar.gz cicd
       - name: Add Zip to Pull Request
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "eng-mlops-outerloop-team@databricks.com"
