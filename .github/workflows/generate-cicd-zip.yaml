@@ -19,7 +19,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
-          token: ${{ secrets.ARPIT_TOKEN }}
       - name: Generate CICD Zip
         run: |
           cp --parents .github/workflows/\{\{.input_project_name\}\}-* cicd/template
@@ -33,5 +32,5 @@ jobs:
           git config --global user.email "eng-mlops-outerloop-team@databricks.com"
           git config --global url.https://${{ secrets.ARPIT_TOKEN }}@github.com/.insteadOf https://github.com/
           git add cicd.tar.gz
-          git commit -m "Add CICD Zip to Pull Request"
+          git commit -m "Generate CICD Zip File for ${{ github.sha }}"
           git push
