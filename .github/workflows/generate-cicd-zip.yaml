@@ -24,7 +24,7 @@ jobs:
         run: |
           cp --parents .github/workflows/\{\{.input_project_name\}\}-* cicd/template
           cp --parents .azure/devops-pipelines/\{\{.input_project_name\}\}-* cicd/template
-          tar -czvf cicd.tar.gz cicd        
+          tar -czvf cicd.tar.gz cicd
       - name: Commit Zip Back to Branch
         env:
           GITHUB_TOKEN: ${{ secrets.ARPIT_TOKEN }}
