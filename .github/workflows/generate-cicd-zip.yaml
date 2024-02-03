@@ -24,7 +24,7 @@ jobs:
           tar -czvf cicd.tar.gz cicd
       - name: Commit Zip Back to Branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ARPIT_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "eng-mlops-outerloop-team@databricks.com"
